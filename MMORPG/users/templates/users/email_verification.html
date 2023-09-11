@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Подтверждение электронной почты</title>
+    <link href="{% static 'users/css/email_verification.css' %}" rel="stylesheet">
+</head>
+<body>
+<form id='email_verification_form' action="{% url 'users:check_email' %}" method="post">
+{% csrf_token %}
+<div class="container">
+    <div class="main_area">
+        <h4>Для завершения регистрации Вам на почту отправлено письмо с кодом подтверждения:</h4>
+            <label for="{{ form.code.id_for_label }}"></label>
+            {{ form.code }}
+            {% if form.errors.code %}
+                <h6>{{ form.errors.code }}</h6>
+            {% endif %}
+    </div>
+</div>
+</form>
+
+
+<script src="{% static 'users/js/script.js' %}"></script>
+</body>
+</html>
